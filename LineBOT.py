@@ -40,12 +40,19 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # 當用戶傳送「喵嗷」時，回覆「嘎阿」
-    if event.message.text == '喵嗷':
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='嘎阿')
-        )
-        
+#    if event.message.text == '喵嗷':
+#        line_bot_api.reply_message(
+#            event.reply_token,
+#            TextSendMessage(text='嘎阿')
+#        )
+#
+    # 回覆用戶發送的訊息
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text)
+    )
+
+
 # 定時發送提醒消息
 def send_reminders():
     now = datetime.datetime.now().strftime("%H:%M")
